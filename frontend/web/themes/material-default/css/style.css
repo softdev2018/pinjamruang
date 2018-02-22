@@ -11,7 +11,11 @@
 }
 
 /* Yii2.ThemeFactory.net */
-.jumbotron {
+/*.jumbotron {
     text-align: center;
     border: 1px solid #ddd;
+}*/
+
+.content{
+  text-align: justify;
 }

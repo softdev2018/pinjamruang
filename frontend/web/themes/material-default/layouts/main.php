@@ -16,12 +16,12 @@ use yii\widgets\Breadcrumbs;
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  
+
   <title><?php echo Html::encode($this->title); ?></title>
   <?php $this->head(); ?>
-	
+
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-  
+
   <!-- CSS  -->
   <link href="<?php echo $this->theme->baseUrl ?>/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="<?php echo $this->theme->baseUrl ?>/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -36,8 +36,9 @@ use yii\widgets\Breadcrumbs;
 						    'options' => ['id' => "nav-mobile", 'class' => 'right side-nav'],
 						    'items' => [
 						        ['label' => 'Home', 'url' => ['site/index']],
-						        ['label' => 'About', 'url' => ['site/about']],
-						        ['label' => 'Contact', 'url' => ['site/contact']],
+						        ['label' => 'Monitoring Ruang', 'url' => ['site/about']],
+						       // ['label' => 'Contact', 'url' => ['site/contact']],
+                   ['label' => 'Logout', 'url' => ['site/logout'], 'visible' => Yii::$app->user->identity->username],
 						        ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
 						    ],
 						]);
@@ -46,10 +47,10 @@ use yii\widgets\Breadcrumbs;
       </div>
     </div>
   </nav>
-  <div class="section no-pad-bot" id="index-banner">
+  <!--div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center orange-text"><?php echo Html::encode(\Yii::$app->name); ?></h1>
+      <h1 class="header center orange-text"><!--?php echo Html::encode(\Yii::$app->name); ?></h1>
       <div class="row center">
         <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
       </div>
@@ -59,7 +60,7 @@ use yii\widgets\Breadcrumbs;
       <br><br>
 
     </div>
-  </div>
+  </div-->
 
   <div class="container">
     <div class="section">
@@ -71,14 +72,14 @@ use yii\widgets\Breadcrumbs;
     </div>
   </div>
 
-  <div class="container">
+  <!--div class="container">
     <div class="section">
 
       <!--   Icon Section   -->
-      <div class="row">
+      <!--div class="row">
         <div class="col s12 m4">
           <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="mdi-image-flash-on"></i></h2> 
+            <h2 class="center light-blue-text"><i class="mdi-image-flash-on"></i></h2>
             <h5 class="center">Speeds up development</h5>
 
             <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
@@ -103,14 +104,14 @@ use yii\widgets\Breadcrumbs;
           </div>
         </div>
       </div>
-      
+
     </div>
     <br><br>
 
     <div class="section">
 
     </div>
-  </div>
+  </div-->
 
   <footer class="orange">
     <div class="container">
@@ -146,14 +147,14 @@ use yii\widgets\Breadcrumbs;
       Made by <a class="orange-text lighten-3" href="http://materializecss.com">Materialize</a>
       </div>
     </div>
-  </footer>  
+  </footer>
 
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="<?php echo $this->theme->baseUrl ?>/js/materialize.js"></script>
   <script src="<?php echo $this->theme->baseUrl ?>/js/init.js"></script>
-  
+
   <?php $this->endBody() ?>
   </body>
 </html>
