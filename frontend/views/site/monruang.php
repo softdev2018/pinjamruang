@@ -7,6 +7,7 @@ use yii\helpers\Html;
 $this->title = 'Monitoring Ruangan';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
 <div class="site-about">
     <h1><!--?= Html::encode($this->title) ?-->Monitoring Ruangan</h1>
 
@@ -14,8 +15,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <code><!?= __FILE__ ?></code-->
 
-    <div class="row">
-      <div class="panel12" style="color:#000;">
+
+    <div class="row" style="margin-left: -15px;
+      margin-right: -15px;
+      margin-bottom: 30px;">
+      <div class="panel12" style="width: 1200px; margin-left: -15px; margin-bottom: 18px;
+        background-color: #F4F4F4;
+        border: 1px solid transparent;
+        border-radius: 2px;
+        -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+        box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+        color: #000;">
       <div class="responsive-table">
         <div class="pull-left">
 
@@ -31,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
 					</label>
         </div>
         <center>
-          <table class="table teble-striped table-bordered" width="100%" cellspacing="0">
+          <table class="table striped table-bordered" width="100%" cellspacing="0">
             <thead>
               <tr>
                 <th><center>Ruang/Sesi(jam)</center></th>
@@ -53,8 +63,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <tbody id="ruangan">
               <tr>
                 <td>Ruangan 1</td>
-                <td width="20px"><button class=" btn btn-warning disabled"><span class="fa fa-thumbs-up"></span></button></td>
-                <td width="20px"><button class=" btn btn-warning disabled"><span class="fa fa-thumbs-up"></span></button></td>
+                <td width="20px"><button class="waves-effect waves-light btn"><span class="fa fa-thumbs-up"></span></button></td>
+                <td width="20px"><button class="btn btn-warning disabled"><span class="fa fa-thumbs-up"></span></button></td>
                 <td width="20px"><button class=" btn btn-warning disabled"><span class="fa fa-thumbs-up"></span></button></td>
                 <td width="20px"><button class=" btn btn-warning disabled"><span class="fa fa-thumbs-up"></span></button></td>
                 <td width="20px"><button class=" btn btn-warning disabled"><span class="fa fa-thumbs-up"></span></button></td>
@@ -124,4 +134,5 @@ $this->params['breadcrumbs'][] = $this->title;
       </div>
       </div>
     </div>
+  </div>
 </div>

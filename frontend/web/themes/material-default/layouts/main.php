@@ -19,6 +19,8 @@ use yii\widgets\Breadcrumbs;
 
   <title><?php echo Html::encode($this->title); ?></title>
   <?php $this->head(); ?>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="screen" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
 
@@ -32,16 +34,31 @@ use yii\widgets\Breadcrumbs;
     <div class="container">
       <div class="nav-wrapper"><a id="logo-container" href="#" class="brand-logo"><?php echo Html::encode(\Yii::$app->name); ?></a>
 	  		<?php
+            $menuItems = [
+                ['label' => 'Home', 'url' => ['site/index']],
+                ['label' => 'Monitoring Ruang', 'url' => ['site/monruang']],
+             // ['label' => 'Contact', 'url' => ['site/contact']],
+
+            ];
+            if (Yii::$app->user->isGuest) {
+                $menuItems[] = ['label' => 'Signup', 'url' => ['site/signup']];
+                $menuItems[] = ['label' => 'Login', 'url' => ['site/login']];
+            } else {
+                $menuItems[] = '<li>'
+                    . Html::beginForm(['site/logout'], 'post')
+                    . Html::submitButton(
+                        'Logout ('.Yii::$app->user->identity->username.')',
+                        ['class' => 'btn btn-link logout']
+
+                    )
+                    . Html::endForm()
+                    . '</li>';
+            }
 						echo Menu::widget([
 						    'options' => ['id' => "nav-mobile", 'class' => 'right side-nav'],
-						    'items' => [
-						        ['label' => 'Home', 'url' => ['site/index']],
-						        ['label' => 'Monitoring Ruang', 'url' => ['site/about']],
-						       // ['label' => 'Contact', 'url' => ['site/contact']],
-                   ['label' => 'Logout', 'url' => ['site/logout'], 'visible' => Yii::$app->user->identity->username],
-						        ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
-						    ],
+						    'items' => $menuItems,
 						]);
+
 					?>
           <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
       </div>
@@ -117,27 +134,24 @@ use yii\widgets\Breadcrumbs;
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+          <h5 class="white-text">Alamat</h5>
+          <p class="grey-text lighten-4">Jalan Ir. Sutami 36 A, Surakarta, 57126 <br/> (0271) 638959 <br/> tik@uns.ac.id</p>
 
 
         </div>
         <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
+          <h5 class="white-text">Contact</h5>
           <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
+            <li><a class="white-text fa fa-instagram" href="https://www.instagram.com/upt.tikuns/" target="_blank"> UPT. TIK UNS (Puskom)</a></li>
+            <li><a class="white-text fa fa-facebook" href="https://id-id.facebook.com/tekinfokomuns/" target="_blank"> UPT. Tekinfokom UNS</a></li>
           </ul>
         </div>
         <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
+          <h5 class="white-text">Daftar Ruang</h5>
           <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
+            <li><a class="white-text" href="#!">Lab. Komputer</a></li>
+            <li><a class="white-text" href="#!">Video Conference</a></li>
+            <li><a class="white-text" href="#!">Aula</a></li>
           </ul>
         </div>
       </div>
