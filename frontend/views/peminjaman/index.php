@@ -18,24 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Ajukan Peminjaman', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-     <?php  //GridView::widget([
-    //     'dataProvider' => $dataProvider,
-    //     'filterModel' => $searchModel,
-    //     'columns' => [
-    //         ['class' => 'yii\grid\SerialColumn'],
-
-    //         // 'ID_PEMINJAMAN',
-    //         // 'ID_PEMINJAM',
-    //         'TANGGAL_PINJAM',
-    //         'iDRUANG.NAMA_RUANG',
-    //         'KEPERLUAN',
-    //         'ID_SESI',
-    //         'STATUS_PINJAM',
-
-    //         // ['class' => 'yii\grid\ActionColumn'],
-    //     ],
-    // ]); 
-    ?>
+     
 
     <table class="table table-bordered">
         <tr class="info">
@@ -51,50 +34,51 @@ $this->params['breadcrumbs'][] = $this->title;
             <td>
                 Ruang
             </td>
-            <td>
-                Sesi
-            </td>
+           
             <td>
                 Status
             </td>
-        </tr>
-        
-            <?php
-                foreach ($data_pinjam as $key => $dp) {
-            ?><tr>
-                <td>
-                    <?= $key+1 ?>
-                </td>
-                <td>
-                    <?= $dp['TANGGAL_PINJAM']; ?>
-                </td>
-                <td>
-                    <?= $dp['KEPERLUAN']; ?>
-                </td>
-                <td>
-                    <?= $dp['NAMA_RUANG']; ?>
-                </td>
-            <?php } ?>
-
             <td>
-            <?php
-                foreach ($data_sesi as $key => $ds) {
-            ?>
-                     <?= "<button class='btn btn-primary'>".$ds['ID_SESI']."</button>"; ?>
-                
-            <?php } ?>
+                Detail
             </td>
-             <?php
-                foreach ($data_pinjam as $key => $dp) {
-                   
-                        echo "<td align='center' class='warning'>";
-                        echo $dp['STATUS_PINJAM'];
-                        echo "</td>";
-                    
+        </tr>
+            
+        <?php
+            foreach ($data_pinjam as $key => $dp) {
+        ?>
+        <tr>
+            <td>
+                <?= $key+1 ?>
+            </td>
+            <td>
+                <?= $dp['TANGGAL_PINJAM']; ?>
+            </td>
+            <td>
+                <?= $dp['KEPERLUAN']; ?>
+            </td>
+            <td>
+                <?= $dp['NAMA_RUANG']; ?>
+            </td>
+            <?php 
+                if($dp['STATUS_PINJAM'] == 'NOT APPROVED'){
+                    echo "<td align='center' class='danger'>";
+                    echo $dp['STATUS_PINJAM'];
+                    echo "</td>";
+                }elseif ($dp['STATUS_PINJAM'] == 'DIPROSES') {
+                    echo "<td align='center' class='info'>";
+                    echo $dp['STATUS_PINJAM'];
+                    echo "</td>";
+                }else{
+                    echo "<td align='center' class='success'>";
+                    echo $dp['STATUS_PINJAM'];
+                    echo "</td>";
+                }//akhir if ?>
+            <td>
+                 <?= Html::a('Detail', ['view', 'tanggal' => $dp['TANGGAL_PINJAM'], 'keperluan' => $dp['KEPERLUAN'], 'peminjam' => Yii::$app->user->identity->id], ['class' => 'btn btn-primary']) ?>
+            </td>
 
-            ?>
-                
-            <?php } ?>
+            <?php }//akhir foreach ?>
+            
         </tr>
         
     </table>

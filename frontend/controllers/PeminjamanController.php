@@ -51,10 +51,13 @@ class PeminjamanController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
-    {
+    public function actionView($tanggal, $keperluan, $peminjam)
+    {   
+        $model = new Peminjaman();
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'data_peminjaman' => $model->dataPeminjaman($tanggal, $keperluan, $peminjam),
+            'sesi_data_peminjaman' => $model->sesiDataPeminjaman($tanggal, $keperluan, $peminjam),
         ]);
     }
 
@@ -114,18 +117,12 @@ class PeminjamanController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $model->ID_PEMINJAMAN = NULL;
-           echo $model->ID_PEMINJAM = Yii::$app->user->identity->id;
-           echo '<br>';
-            echo $model->TANGGAL_PINJAM = $tgl;
-            echo '<br>';
-            echo $model->KEPERLUAN ;
-            echo '<br>';
-            echo $model->ID_RUANG = $ruang;
-            echo '<br>';
-            echo $model->ID_SESI = $sesi;
-            echo '<br>';
-            echo $model->STATUS_PINJAM = 'DIPROSES';
-            echo '<br>';
+            $model->ID_PEMINJAM = Yii::$app->user->identity->id;
+            $model->TANGGAL_PINJAM = $tgl;
+            $model->KEPERLUAN ;
+            $model->ID_RUANG = $ruang;
+            $model->ID_SESI = $sesi;
+            $model->STATUS_PINJAM = 'DIPROSES';
             $model->isNewRecord = TRUE;
             $model->save();
           

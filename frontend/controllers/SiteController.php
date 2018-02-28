@@ -136,19 +136,9 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-    public function actionMonruang()
+    public function actionAbout()
     {
-        return $this->render('monruang');
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return mixed
-     */
-    public function actionSurat()
-    {
-        return $this->render('surat');
+        return $this->render('about');
     }
 
     /**

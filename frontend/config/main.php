@@ -1,26 +1,17 @@
 <?php
 $params = array_merge(
-    require __DIR__ . '/../../common/config/params.php',
-    require __DIR__ . '/../../common/config/params-local.php',
-    require __DIR__ . '/params.php',
-    require __DIR__ . '/params-local.php'
+    require(__DIR__ . '/../../common/config/params.php'),
+    require(__DIR__ . '/../../common/config/params-local.php'),
+    require(__DIR__ . '/params.php'),
+    require(__DIR__ . '/params-local.php')
 );
 
 return [
     'id' => 'app-frontend',
-    'name' => 'Peminjaman Ruang',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
-
     'components' => [
-		'view' => [
-                        'theme' => [
-                          'class' => 'yii\base\Theme',
-                          'pathMap' => ['@app/views' => '@app/web/themes/material-default'],
-                          'baseUrl' => '@web/themes/material-default'
-                        ],
-                ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
