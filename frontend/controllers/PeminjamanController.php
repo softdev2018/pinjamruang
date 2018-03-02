@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use common\models\Peminjaman;
+use common\models\Ruang;
 use frontend\models\PeminjamanSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -36,6 +37,7 @@ class PeminjamanController extends Controller
     public function actionIndex()
     {
         $searchModel = new PeminjamanSearch();
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $model = new Peminjaman();
         return $this->render('index', [
@@ -43,6 +45,7 @@ class PeminjamanController extends Controller
             'dataProvider' => $dataProvider,
             'data_pinjam' => $model->getPengajuanUser(),
             'data_sesi' => $model->getPengajuanSesiUser(),
+
         ]);
     }
 
@@ -52,12 +55,13 @@ class PeminjamanController extends Controller
      * @return mixed
      */
     public function actionView($tanggal, $keperluan, $peminjam)
-    {   
+    {
         $model = new Peminjaman();
         return $this->render('view', [
             'model' => $model,
             'data_peminjaman' => $model->dataPeminjaman($tanggal, $keperluan, $peminjam),
             'sesi_data_peminjaman' => $model->sesiDataPeminjaman($tanggal, $keperluan, $peminjam),
+
         ]);
     }
 
@@ -69,6 +73,7 @@ class PeminjamanController extends Controller
     public function actionCreate()
     {
         $model = new Peminjaman();
+        $ruang = Ruang::find()->all();
 
         if ($model->load(Yii::$app->request->post()) ) {
             $sesi = $_POST['sesi'];
@@ -81,7 +86,7 @@ class PeminjamanController extends Controller
                 $model->ID_SESI = $s;
                 $model->STATUS_PINJAM = 'DIPROSES';
                 $cek_jadwal = Peminjaman::find()->where(['ID_SESI' => $model->ID_SESI])->andWhere(['TANGGAL_PINJAM'=>$model->TANGGAL_PINJAM])->andWhere(['ID_RUANG'=>$model->ID_RUANG])->all();
-                
+
                 if(!empty($cek_jadwal)){
                     $hasil_cek[] = 'DIPAKAI';//cek jika jadwal dipakai
                 }else{
@@ -103,11 +108,13 @@ class PeminjamanController extends Controller
                     $model->save();
                 }
             }
-            return $this->redirect(['view', 'id' => $model->ID_PEMINJAMAN]);
+            return $this->redirect(['view', 'id' => $model->ID_PEMINJAMAN  ] );
         } else {
             return $this->render('create', [
                 'model' => $model,
                 'sesi' => $model->AllSesi(),
+                'ruang' => $ruang,
+
             ]);
         }
     }
@@ -125,7 +132,7 @@ class PeminjamanController extends Controller
             $model->STATUS_PINJAM = 'DIPROSES';
             $model->isNewRecord = TRUE;
             $model->save();
-          
+
             return $this->redirect(['index']);
         }else{
             return $this->render('_form_pinjam_sesi',[

@@ -8,6 +8,7 @@ use kartik\widgets\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model common\models\Peminjaman */
 /* @var $form yii\widgets\ActiveForm */
+$this->registerJs($this->render('_script.js'));
 ?>
 <div class="row"></div>
 
@@ -23,14 +24,23 @@ use kartik\widgets\DatePicker;
                                     'value'=>Yii::$app->user->identity->username,
                                     'disabled' => 'readonly',
                                     ]) ?>
-               
-                <?= $form->field($model, 'ID_RUANG')->widget(Select2::className(), [
-                                      'model' => $model,
-                                      'options' => ['placeholder' => 'Ruang yang dipinjam'],
-                                      'data' => ArrayHelper::map(common\models\Ruang::find()->all(), 'ID_RUANG', 'NAMA_RUANG'),
-                                      
-                                  ]); ?>
-                                  
+
+
+                                  <p><b>Ruang yang dipinjam</b></p>
+                                  <table width="100%">
+                                    <tr>
+                                    <?php foreach ($ruang as $row) {
+
+                                      ?>
+                                      <td align="center">
+                                        <input type="checkbox" name="ruang[]" value=<?= $row['ID_RUANG'] ?>>
+                                      </td>
+                                      <td><?= 'Ruang '.$row['NAMA_RUANG']; ?>
+                                     <?php
+                                    }  ?></td>
+                                    </tr>
+                                  </table>
+
                 <?= $form->field($model, 'KEPERLUAN')->textarea(['rows' => 6]) ?>
 
                 <?= $form->field($model, 'TANGGAL_PINJAM')->widget(DatePicker::classname(), [
@@ -39,10 +49,10 @@ use kartik\widgets\DatePicker;
                                         'autoclose'=>true,
                                         'format' => 'yyyy-mm-dd'
                                     ]
-                                ]);   
+                                ]);
 
                                     ?>
-                <p><b>Sesi yang dipinjam</b></p>                    
+                <p><b>Sesi yang dipinjam</b></p>
                 <table width="100%">
                   <tr>
                   <?php foreach ($sesi as $key => $s) {
@@ -56,8 +66,8 @@ use kartik\widgets\DatePicker;
                   }  ?></td>
                   </tr>
                 </table>
-                
-    
+
+
                 <br><br>
                 <div class="form-group">
                     <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

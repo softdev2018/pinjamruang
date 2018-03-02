@@ -16,6 +16,7 @@ $this->title = 'Membuat Peminjaman';
     <?= $this->render('_form', [
         'model' => $model,
         'sesi' => $model->AllSesi(),
+        'ruang' => $ruang,
     ]) ?>
 
 </div>
