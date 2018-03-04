@@ -24,11 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <td>
                 Pengaju
             </td>
-            <td>
+            <td width=600px>
                 Keperluan
-            </td>
-            <td>
-                Ruang
             </td>
             <td>
                 Status
@@ -37,13 +34,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 Aksi
             </td>
         </tr>
-        
+
             <?php
                 $no = 1;
                 foreach ($peminjaman as $pinjam) {
             ?><tr>
             <td>
-              <?= $no++ ?>  
+              <?= $no++ ?>
             </td>
             <td>
                 <?= $pinjam['username'] ?>
@@ -51,22 +48,19 @@ $this->params['breadcrumbs'][] = $this->title;
             <td>
                 <?= $pinjam['KEPERLUAN'] ?>
             </td>
-            <td>
-                <?= $pinjam['NAMA_RUANG'] ?>
-            </td>
              <td>
-                <?php  
+                <?php
                     if( $pinjam['STATUS_PINJAM'] == 'DIPROSES'){
                             echo "Menunggu konfirmasi admin";
                         }else{
                             echo $pinjam['STATUS_PINJAM'];
-                        } 
+                        }
                 ?>
             </td>
-            <td>
+            <td align=center>
                 <?php
-                    
-                    //echo Html::button('Lihat', ['value' => Url::to("view?tanggal=".$pinjam['TANGGAL_PINJAM']."&keperluan=".$keperluan), 'class' => 'btn btn-primary', 'id' => 'modalButton']) 
+
+                    //echo Html::button('Lihat', ['value' => Url::to("view?tanggal=".$pinjam['TANGGAL_PINJAM']."&keperluan=".$keperluan), 'class' => 'btn btn-primary', 'id' => 'modalButton'])
                     echo Html::a('Lihat', ['view',"tanggal" => $pinjam['TANGGAL_PINJAM'],"keperluan"=>$pinjam['KEPERLUAN'],'peminjam' => $pinjam['id']],[ 'class' => 'btn btn-primary']) ;
                 ?>
                 <?php
@@ -84,5 +78,3 @@ $this->params['breadcrumbs'][] = $this->title;
     </table>
 
 </div>
-
-

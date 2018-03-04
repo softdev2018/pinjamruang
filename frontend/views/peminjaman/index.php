@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Ajukan Peminjaman', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-     
+
 
     <table class="table table-bordered">
         <tr class="info">
@@ -28,13 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
             <td>
                 Tanggal
             </td>
-            <td>
+            <td width=600px>
                 Keperluan
             </td>
-            <td>
-                Ruang
-            </td>
-           
+
             <td>
                 Status
             </td>
@@ -42,44 +39,52 @@ $this->params['breadcrumbs'][] = $this->title;
                 Detail
             </td>
         </tr>
-            
-        <?php
-            foreach ($data_pinjam as $key => $dp) {
-        ?>
-        <tr>
-            <td>
-                <?= $key+1 ?>
-            </td>
-            <td>
-                <?= $dp['TANGGAL_PINJAM']; ?>
-            </td>
-            <td>
-                <?= $dp['KEPERLUAN']; ?>
-            </td>
-            <td>
-                <?= $dp['NAMA_RUANG']; ?>
-            </td>
-            <?php 
-                if($dp['STATUS_PINJAM'] == 'NOT APPROVED'){
-                    echo "<td align='center' class='danger'>";
-                    echo $dp['STATUS_PINJAM'];
-                    echo "</td>";
-                }elseif ($dp['STATUS_PINJAM'] == 'DIPROSES') {
-                    echo "<td align='center' class='info'>";
-                    echo $dp['STATUS_PINJAM'];
-                    echo "</td>";
-                }else{
-                    echo "<td align='center' class='success'>";
-                    echo $dp['STATUS_PINJAM'];
-                    echo "</td>";
-                }//akhir if ?>
-            <td>
-                 <?= Html::a('Detail', ['view', 'tanggal' => $dp['TANGGAL_PINJAM'], 'keperluan' => $dp['KEPERLUAN'], 'peminjam' => Yii::$app->user->identity->id], ['class' => 'btn btn-primary']) ?>
-            </td>
 
-            <?php }//akhir foreach ?>
-            
+        <?php
+        $temp="";
+        $temp1="";
+              foreach ($data_pinjam as $key => $dp) {
+                if($temp!=$dp['TANGGAL_PINJAM'].$dp['KEPERLUAN'].$dp['ID_PEMINJAM']){
+                $temp=$dp['TANGGAL_PINJAM'].$dp['KEPERLUAN'].$dp['ID_PEMINJAM'];
+          ?>
+          <tr>
+              <td>
+                  <?= $key+1 ?>
+              </td>
+              <td>
+                  <?= $dp['TANGGAL_PINJAM']; ?>
+              </td>
+              <td>
+                  <?= $dp['KEPERLUAN']; ?>
+              </td>
+              <?php
+                  if($dp['STATUS_PINJAM'] == 'NOT APPROVED'){
+                      echo "<td align='center' class='danger'>";
+                      echo $dp['STATUS_PINJAM'];
+                      echo "</td>";
+                  }elseif ($dp['STATUS_PINJAM'] == 'DIPROSES') {
+                      echo "<td align='center' class='info'>";
+                      echo $dp['STATUS_PINJAM'];
+                      echo "</td>";
+                  }else{
+                      echo "<td align='center' class='success'>";
+                      echo $dp['STATUS_PINJAM'];
+                      echo "</td>";
+                  }//akhir if ?>
+              <td align=center>
+                   <?= Html::a('Detail', [
+                     'view',
+                     'tanggal' => $dp['TANGGAL_PINJAM'],
+                     'keperluan' => $dp['KEPERLUAN'],
+                     'peminjam' => Yii::$app->user->identity->id],
+                     ['class' => 'btn btn-primary'])
+                  ?>
+
+              </td>
+
+            <?php }}//akhir foreach ?>
+
         </tr>
-        
+
     </table>
 </div>

@@ -25,16 +25,21 @@ $this->registerJs($this->render('_script.js'));
                                     'disabled' => 'readonly',
                                     ]) ?>
 
-                <?= $form->field($model, 'ID_RUANG')->widget(Select2::className(), [
-                                      'model' => $model,
-                                      'options' => [
-                                        'placeholder' => 'Ruang yang dipinjam',
-                                        'id' => 'pi-ruang',
-                                        'data-url' => yii\helpers\Url::to(['/helper/ajax-sesi']),
-                                      ],
-                                      'data' => ArrayHelper::map(common\models\Ruang::find()->all(), 'ID_RUANG', 'NAMA_RUANG'),
-
-                                  ]); ?>
+                <p><b>Ruang yang dipinjam</b></p>
+                <table width="100%">
+                  <tr>
+                  <?php $data; ?>
+                  <?php foreach ($ruang as $key => $s) {
+                       if( $key%5 == 0){ echo '</tr><tr>';};
+                    ?>
+                    <td align="center">
+                      <input type="checkbox" name="ruang[]" value=<?= $s['ID_RUANG'] ?>>
+                    </td>
+                    <td><?= 'Ruang '.$s['NAMA_RUANG']; ?>
+                   <?php
+                  }  ?></td>
+                  </tr>
+                </table>
 
                 <?= $form->field($model, 'KEPERLUAN')->textarea(['rows' => 6]) ?>
 
@@ -64,7 +69,7 @@ $this->registerJs($this->render('_script.js'));
                 </table>
 
                 <div class="alert alert-success alert-dismissible" id="inforuang" style="display:none">
-                
+
                 </div>
 
                 <br><br>

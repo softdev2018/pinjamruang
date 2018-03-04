@@ -77,36 +77,41 @@ class PeminjamanController extends Controller
 
         if ($model->load(Yii::$app->request->post()) ) {
             $sesi = $_POST['sesi'];
+            $ruang = $_POST['ruang'];
             $hasil_cek = array();
-            foreach ($sesi as $s) {
-                $model->ID_PEMINJAMAN = NULL;
-                $model->ID_PEMINJAM = Yii::$app->user->identity->id;
-                $model->TANGGAL_PINJAM;
-                $model->ID_RUANG;
-                $model->ID_SESI = $s;
-                $model->STATUS_PINJAM = 'DIPROSES';
-                $cek_jadwal = Peminjaman::find()->where(['ID_SESI' => $model->ID_SESI])->andWhere(['TANGGAL_PINJAM'=>$model->TANGGAL_PINJAM])->andWhere(['ID_RUANG'=>$model->ID_RUANG])->all();
+            foreach ($ruang as $r) {
+                foreach ($sesi as $s) {
+                    $model->ID_PEMINJAMAN = NULL;
+                    $model->ID_PEMINJAM = Yii::$app->user->identity->id;
+                    $model->TANGGAL_PINJAM;
+                    $model->ID_RUANG = $r;
+                    $model->ID_SESI = $s;
+                    $model->STATUS_PINJAM = 'DIPROSES';
+                    $cek_jadwal = Peminjaman::find()->where(['ID_SESI' => $model->ID_SESI])->andWhere(['TANGGAL_PINJAM'=>$model->TANGGAL_PINJAM])->andWhere(['ID_RUANG'=>$model->ID_RUANG])->all();
 
-                if(!empty($cek_jadwal)){
-                    $hasil_cek[] = 'DIPAKAI';//cek jika jadwal dipakai
-                }else{
-                   $hasil_cek[] = 'KOSONG';
+                    if(!empty($cek_jadwal)){
+                        $hasil_cek[] = 'DIPAKAI';//cek jika jadwal dipakai
+                    }else{
+                       $hasil_cek[] = 'KOSONG';
+                    }
                 }
             }
             //jika ada sesi yang dipakai maka gagal disimpan
             if (in_array('DIPAKAI', $hasil_cek)) {
                return $this->redirect(['create']);
             }else{
+              foreach ($ruang as $r) {
                 foreach ($sesi as $s) {
                     $model->ID_PEMINJAMAN = NULL;
                     $model->ID_PEMINJAM = Yii::$app->user->identity->id;
                     $model->TANGGAL_PINJAM;
-                    $model->ID_RUANG;
+                    $model->ID_RUANG = $r;
                     $model->ID_SESI = $s;
                     $model->STATUS_PINJAM = 'DIPROSES';
                     $model->isNewRecord = TRUE;
                     $model->save();
                 }
+              }
             }
             return $this->redirect(['view', 'tanggal' => $model->TANGGAL_PINJAM, 'keperluan' =>  $model->KEPERLUAN, 'peminjam' =>  $model->ID_PEMINJAM ] );
         } else {

@@ -121,7 +121,6 @@ class Peminjaman extends \yii\db\ActiveRecord
                             'peminjaman.ID_RUANG = ruang.ID_RUANG'
                         )
                     ->where(["ID_PEMINJAM" => Yii::$app->user->identity->id])
-                    ->groupBy('peminjaman.KEPERLUAN')
                     ->all();
         return $peminjaman;
     }
