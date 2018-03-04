@@ -108,7 +108,7 @@ class PeminjamanController extends Controller
                     $model->save();
                 }
             }
-            return $this->redirect(['view', 'id' => $model->ID_PEMINJAMAN  ] );
+            return $this->redirect(['view', 'tanggal' => $model->TANGGAL_PINJAM, 'keperluan' =>  $model->KEPERLUAN, 'peminjam' =>  $model->ID_PEMINJAM ] );
         } else {
             return $this->render('create', [
                 'model' => $model,

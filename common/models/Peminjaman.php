@@ -50,6 +50,7 @@ class Peminjaman extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'ID' => 'ID',
             'ID_PEMINJAMAN' => 'Id  Peminjaman',
             'ID_PEMINJAM' => 'Peminjam',
             'ID_RUANG' => 'Ruang',
@@ -119,7 +120,7 @@ class Peminjaman extends \yii\db\ActiveRecord
                             'RUANG',
                             'peminjaman.ID_RUANG = ruang.ID_RUANG'
                         )
-                    ->where(["ID_PEMINJAM" => Yii::$app->user->identity->id]) 
+                    ->where(["ID_PEMINJAM" => Yii::$app->user->identity->id])
                     ->groupBy('peminjaman.KEPERLUAN')
                     ->all();
         return $peminjaman;
@@ -138,7 +139,7 @@ class Peminjaman extends \yii\db\ActiveRecord
                             'RUANG',
                             'peminjaman.ID_RUANG = ruang.ID_RUANG'
                         )
-                    ->where(["ID_PEMINJAM" => Yii::$app->user->identity->id]) 
+                    ->where(["ID_PEMINJAM" => Yii::$app->user->identity->id])
                     ->all();
         return $peminjaman;
     }
@@ -161,7 +162,7 @@ class Peminjaman extends \yii\db\ActiveRecord
                 ->where("peminjaman.TANGGAL_PINJAM = $tgl AND peminjaman.KEPERLUAN = $kep AND peminjaman.ID_PEMINJAM = $id_peminjam")
                 ->groupBy('peminjaman.KEPERLUAN')
                 ->all();
-                
+
         return $data;
     }
 
@@ -182,7 +183,7 @@ class Peminjaman extends \yii\db\ActiveRecord
                         )
                 ->where("peminjaman.TANGGAL_PINJAM = $tgl AND peminjaman.KEPERLUAN = $kep AND peminjaman.ID_PEMINJAM = $id_peminjam")
                 ->all();
-                
+
         return $data;
     }
 }

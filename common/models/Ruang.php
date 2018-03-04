@@ -70,7 +70,7 @@ class Ruang extends \yii\db\ActiveRecord
             $data[$i] = array('ID_RUANG' => $r['ID_RUANG'],'RUANG' => $r['NAMA_RUANG']);
             $j=0;
             foreach ($sesi as $s) {
-                 $status = (new \yii\db\Query())   
+                 $status = (new \yii\db\Query())
                             ->select('*')
                             ->from('peminjaman')
                             ->join('join',
@@ -87,14 +87,14 @@ class Ruang extends \yii\db\ActiveRecord
                 foreach ($status as $stat) {
                     $stat1 = $stat['STATUS_PINJAM'];
                 }
-            
-            
-                          
+
+
+
                 $data[$i]['DATA'][$j++]  = array('SESI' => $s['ID_SESI'],'STATUS' => $stat1);
             }//akhir foreach sesi
            $i++;
         } //akir foreach ruang
-           
+        
         return $data;
 
     }

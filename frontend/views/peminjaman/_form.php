@@ -25,26 +25,21 @@ $this->registerJs($this->render('_script.js'));
                                     'disabled' => 'readonly',
                                     ]) ?>
 
+                <?= $form->field($model, 'ID_RUANG')->widget(Select2::className(), [
+                                      'model' => $model,
+                                      'options' => [
+                                        'placeholder' => 'Ruang yang dipinjam',
+                                        'id' => 'pi-ruang',
+                                        'data-url' => yii\helpers\Url::to(['/helper/ajax-sesi']),
+                                      ],
+                                      'data' => ArrayHelper::map(common\models\Ruang::find()->all(), 'ID_RUANG', 'NAMA_RUANG'),
 
-                                  <p><b>Ruang yang dipinjam</b></p>
-                                  <table width="100%">
-                                    <tr>
-                                    <?php foreach ($ruang as $row) {
-
-                                      ?>
-                                      <td align="center">
-                                        <input type="checkbox" name="ruang[]" value=<?= $row['ID_RUANG'] ?>>
-                                      </td>
-                                      <td><?= 'Ruang '.$row['NAMA_RUANG']; ?>
-                                     <?php
-                                    }  ?></td>
-                                    </tr>
-                                  </table>
+                                  ]); ?>
 
                 <?= $form->field($model, 'KEPERLUAN')->textarea(['rows' => 6]) ?>
 
                 <?= $form->field($model, 'TANGGAL_PINJAM')->widget(DatePicker::classname(), [
-                                    'options' => ['placeholder' => 'Tanggal Ruang akan dipinjam'],
+                                    'options' => ['placeholder' => 'Tanggal Ruang akan dipinjam', 'id' => 'pi-tanggal'],
                                     'pluginOptions' => [
                                         'autoclose'=>true,
                                         'format' => 'yyyy-mm-dd'
@@ -55,6 +50,7 @@ $this->registerJs($this->render('_script.js'));
                 <p><b>Sesi yang dipinjam</b></p>
                 <table width="100%">
                   <tr>
+                  <?php $data; ?>
                   <?php foreach ($sesi as $key => $s) {
                        if( $key%5 == 0){ echo '</tr><tr>';};
                     ?>
@@ -67,6 +63,9 @@ $this->registerJs($this->render('_script.js'));
                   </tr>
                 </table>
 
+                <div class="alert alert-success alert-dismissible" id="inforuang" style="display:none">
+                
+                </div>
 
                 <br><br>
                 <div class="form-group">
