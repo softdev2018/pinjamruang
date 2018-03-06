@@ -61,6 +61,7 @@ class PeminjamanController extends Controller
             'model' => $model,
             'data_peminjaman' => $model->dataPeminjaman($tanggal, $keperluan, $peminjam),
             'sesi_data_peminjaman' => $model->sesiDataPeminjaman($tanggal, $keperluan, $peminjam),
+            'sesi_view_data_peminjaman' => $model->sesiViewDataPeminjaman($tanggal, $keperluan, $peminjam),
 
         ]);
     }

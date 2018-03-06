@@ -185,4 +185,25 @@ class Peminjaman extends \yii\db\ActiveRecord
 
         return $data;
     }
+    public function sesiViewDataPeminjaman($tanggal, $keperluan, $peminjam){
+        $tgl = '\''.$tanggal.'\'';
+        $kep = '\''.$keperluan.'\'';
+        $id_peminjam = '\''.$peminjam.'\'';
+        $data = (new \yii\db\Query())
+                ->select('*')
+                ->from('peminjaman')
+                ->join('join',
+                            'user',
+                            'peminjaman.ID_PEMINJAM = user.ID'
+                        )
+                ->join('join',
+                            'RUANG',
+                            'peminjaman.ID_RUANG = ruang.ID_RUANG'
+                        )
+                ->where("peminjaman.TANGGAL_PINJAM = $tgl AND peminjaman.KEPERLUAN = $kep AND peminjaman.ID_PEMINJAM = $id_peminjam")
+                ->groupBy('peminjaman.ID_SESI')
+                ->all();
+
+        return $data;
+    }
 }

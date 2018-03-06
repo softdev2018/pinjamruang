@@ -86,7 +86,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <td>
             <?php
 
-                foreach ($sesi_data_peminjaman as $sesi_pinjam) {
+                foreach ($sesi_view_data_peminjaman as $sesi_pinjam) {
             ?>
 
             <?= "<button class='btn btn-primary'>".$sesi_pinjam['ID_SESI'].'</button> ' ?>
