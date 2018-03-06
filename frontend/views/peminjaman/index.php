@@ -38,6 +38,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <td>
                 Detail
             </td>
+            <td>
+                Cetak Surat
+            </td>
         </tr>
 
         <?php
@@ -74,6 +77,16 @@ $this->params['breadcrumbs'][] = $this->title;
               <td align=center>
                    <?= Html::a('Detail', [
                      'view',
+                     'tanggal' => $dp['TANGGAL_PINJAM'],
+                     'keperluan' => $dp['KEPERLUAN'],
+                     'peminjam' => Yii::$app->user->identity->id],
+                     ['class' => 'btn btn-primary'])
+                  ?>
+
+              </td>
+              <td align=center>
+                   <?= Html::a('Cetak', [
+                     'cetak-surat',
                      'tanggal' => $dp['TANGGAL_PINJAM'],
                      'keperluan' => $dp['KEPERLUAN'],
                      'peminjam' => Yii::$app->user->identity->id],

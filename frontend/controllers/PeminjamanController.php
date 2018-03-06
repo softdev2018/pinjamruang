@@ -9,6 +9,9 @@ use frontend\models\PeminjamanSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use \yii\web\Response;
+use yii\helpers\Html;
+use kartik\mpdf\Pdf;
 
 /**
  * PeminjamanController implements the CRUD actions for Peminjaman model.
@@ -71,6 +74,52 @@ class PeminjamanController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
+     public function actionCetakSurat($tanggal, $keperluan, $peminjam)
+      {
+          $model = new Peminjaman();
+          $dataPeminjaman = $model->dataPeminjaman($tanggal, $keperluan, $peminjam);
+
+        $response = Yii::$app->response;
+        $response->format = Response::FORMAT_RAW;
+        $headers = Yii::$app->response->headers;
+        $headers->add('Content-Type', 'application/pdf');
+        $content = $this->renderPartial('cetak-surat', [
+          'model' => $model,
+          'data_peminjaman' => $model->dataPeminjaman($tanggal, $keperluan, $peminjam),
+          'sesi_data_peminjaman' => $model->sesiDataPeminjaman($tanggal, $keperluan, $peminjam),
+          'sesi_view_data_peminjaman' => $model->sesiViewDataPeminjaman($tanggal, $keperluan, $peminjam)]);
+        $pdf = new Pdf([
+          'mode' => Pdf::MODE_CORE,
+          'format' => Pdf::FORMAT_LEGAL,
+          'orientation' => Pdf::ORIENT_PORTRAIT,
+          'destination' => Pdf::DEST_BROWSER,
+          'filename' => "SURAT-PENGAJUAN-"  . '.pdf',
+          'content' => $content,
+          'marginTop' => 15,
+          'marginLeft' => 20,
+          'marginRight' => 20,
+          'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+          'cssInline' => 'body{
+            font-family: "Times New Roman", Times, serif !important;
+            font-size:12pt;
+            color : #000000;
+          }table td {
+            padding: 0;
+            vertical-align: top;
+            padding-bottom: 2px;
+          } .list td{
+            padding-bottom: 4px;
+          },
+        }',
+        'options' => ['title' => 'SURAT-PENGAJUAN-' ],
+        'methods' => [
+          'SetHeader' => '',
+          'SetFooter' => '',
+        ],
+      ]);
+
+  return $pdf->render();
+      }
     public function actionCreate()
     {
         $model = new Peminjaman();
