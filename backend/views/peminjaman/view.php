@@ -12,20 +12,20 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="peminjaman-view">
 
-    <table class="table table-bordered tabel-hover"> 
+    <table class="table table-bordered tabel-hover">
         <tr>
             <td width="20%">
                 Pengaju
             </td>
             <td>
-            <?php 
+            <?php
                 foreach ($data_peminjaman as $data) {
             ?>
-            
+
             <?= $data['username'] ?>
             <?php  }   ?>
-            
-                
+
+
             </td>
         </tr>
         <tr>
@@ -33,14 +33,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 Keperluan
             </td>
             <td>
-            <?php 
+            <?php
                 foreach ($data_peminjaman as $data) {
             ?>
-            
+
             <?= $data['KEPERLUAN'] ?>
             <?php  }   ?>
-            
-                
+
+
             </td>
         </tr>
 
@@ -49,13 +49,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 Ruang
             </td>
             <td>
-            <?php 
-                foreach ($data_peminjaman as $data) {
-            ?>
-            
-            <?= $data['NAMA_RUANG'] ?>
-            <?php  }   ?>
-                
+              <?php
+              $temp = "";
+                  foreach ($sesi_data_peminjaman as $data) {
+                    if($temp!=$data['NAMA_RUANG']){
+                      if($temp!=""){
+                        echo ", ";
+                      }
+                      $temp = $data['NAMA_RUANG'];
+                      echo "Ruang ".$temp;
+                    }
+                  }   ?>
+
             </td>
         </tr>
         <tr>
@@ -63,13 +68,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 Tanggal
             </td>
             <td>
-            <?php 
+            <?php
                 foreach ($data_peminjaman as $data) {
             ?>
             <?php $status = $data['STATUS_PINJAM']; ?>
             <?= $data['TANGGAL_PINJAM'] ?>
             <?php  }   ?>
-                
+
             </td>
         </tr>
         <tr>
@@ -77,14 +82,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 Sesi
             </td>
             <td>
-            <?php 
-                foreach ($sesi_data_peminjaman as $sesi_pinjam) {
+            <?php
+                foreach ($sesi_view_data_peminjaman as $sesi_pinjam) {
             ?>
-            
+
             <?= "<button class='btn btn-primary'>".$sesi_pinjam['ID_SESI'].'</button> ' ?>
                         <?php  }   ?>
-            
-                
+
+
             </td>
         </tr>
         <tr>
@@ -92,24 +97,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 Status
             </td>
             <td>
-            <?php 
+            <?php
                 foreach ($data_peminjaman as $data) {
-            
+
                     if( $data['STATUS_PINJAM'] == 'DIPROSES'){
                         echo "Menunggu konfirmasi admin";
                     }else{
                         echo $data['STATUS_PINJAM'];
-                    } 
-                
-                }   
+                    }
+
+                }
             ?>
-            
-                
+
+
             </td>
         </tr>
     </table>
     <br>
-    <?php 
+    <?php
         if ($status == 'APPROVED') {
             echo  Html::a('Approve', ['updatestatusterima', 'tanggal' => $_GET['tanggal'], 'keperluan' => $_GET['keperluan'], 'peminjam' => $_GET['peminjam']], [
                 'class' => 'btn btn-primary disabled',
@@ -161,5 +166,5 @@ $this->params['breadcrumbs'][] = $this->title;
         }
     ?>
 
-    
+
 </div>

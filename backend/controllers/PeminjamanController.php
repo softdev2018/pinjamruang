@@ -40,12 +40,13 @@ class PeminjamanController extends Controller
     }
 
     public function actionView($tanggal, $keperluan, $peminjam)
-    {   
+    {
         $model = new Peminjaman();
         return $this->render('view', [
             'model' => $model,
             'data_peminjaman' => $model->dataPeminjaman($tanggal, $keperluan, $peminjam),
             'sesi_data_peminjaman' => $model->sesiDataPeminjaman($tanggal, $keperluan, $peminjam),
+            'sesi_view_data_peminjaman' => $model->sesiViewDataPeminjaman($tanggal, $keperluan, $peminjam),
         ]);
     }
 
@@ -56,11 +57,11 @@ class PeminjamanController extends Controller
         if (Yii::$app->request->post()) {
             foreach ($update as $id_update) {
                 $id_peminjaman = $id_update['ID_PEMINJAMAN'];
-                $update_model = $this->findModel($id_peminjaman);            
+                $update_model = $this->findModel($id_peminjaman);
                 $update_model->STATUS_PINJAM='APPROVED';
                 $update_model->update();
             }
-                
+
             return $this->redirect(['index']);
         }else{
             return $this->render('update', [
@@ -75,11 +76,11 @@ class PeminjamanController extends Controller
         if (Yii::$app->request->post()) {
             foreach ($update as $id_update) {
                 $id_peminjaman = $id_update['ID_PEMINJAMAN'];
-                $update_model = $this->findModel($id_peminjaman);            
+                $update_model = $this->findModel($id_peminjaman);
                 $update_model->STATUS_PINJAM='NOT APPROVED';
                 $update_model->update();
             }
-                
+
             return $this->redirect(['index']);
         }else{
             return $this->render('update', [
