@@ -8,10 +8,12 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
+    'name' => 'Peminjaman Ruang UPT TIK UNS',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
