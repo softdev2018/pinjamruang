@@ -38,12 +38,13 @@ AppAsset::register($this);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
         ['label' => 'Cari Data Ruang', 'url' => ['/ruang']],
-        ['label' => 'Peminjaman Saya', 'url' => ['/peminjaman/']],
+
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
+        $menuItems[] =   ['label' => 'Peminjaman Saya', 'url' => ['/peminjaman/']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
@@ -70,11 +71,36 @@ AppAsset::register($this);
 </div>
 
 <footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h5><b>Alamat</b></h5>
+        <p>Jalan Ir. Sutami 36 A, Surakarta, 57126 <br/> (0271) 638959 <br/> tik@uns.ac.id</p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+
+      </div>
+      <div class="col-md-4">
+        <h5><b>Contact</b></h5>
+        <ul>
+          <li><a class="fa fa-instagram" href="https://www.instagram.com/upt.tikuns/" target="_blank"> UPT. TIK UNS (Puskom)</a></li>
+          <li><a class="fa fa-facebook-square" href="https://id-id.facebook.com/tekinfokomuns/" target="_blank"> UPT. Tekinfokom UNS</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5><b>Daftar Ruang</b></h5>
+        <p>Lab. Komputer <br/> Video Conference <br/> Aula</p>
+
+        <!--ul>
+          <li><a style="color:#000;" href="#!">Lab. Komputer</a></li>
+          <li><a style="color:#000;" href="#!">Video Conference</a></li>
+          <li><a style="color:#000;" href="#!">Aula</a></li>
+        </ul-->
+      </div>
     </div>
+      <!--p class="pull-left">&copy; My Company <!?= date('Y') ?></p>
+
+      <p class="pull-right"><!?= Yii::powered() ?></p-->
+  </div>
 </footer>
 
 <?php $this->endBody() ?>

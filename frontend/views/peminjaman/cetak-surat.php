@@ -9,7 +9,7 @@ setlocale(LC_TIME, 'Indonesian');
 <!DOCTYPE html>
 <html>
 <header>
-  <table style="border: none; width: 100%;} td{vertical-align:top}">
+  <table style="border: none; width: 100%; td{vertical-align:top}">
     <tr>
       <td style="vertical-align: middle;">
         <div class="logo">

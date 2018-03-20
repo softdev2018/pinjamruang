@@ -37,69 +37,76 @@ $this->title = 'Peminjaman Ruang UPT TIK UNS';
   <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
   <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
 
-  </div>
+</div><br><br>
   <div class="container">
-    <div class="section">
-      <h2>Alur Peminjaman Ruang UPT TIK UNS</h2>
-
-      <!--   Icon Section   -->
+    <div class="content" style="text-align: center; color:#fff; font-size:20px; background-color:#1E90FF; padding: 40px; height:150;">
+      <p>Selamat Datang di Sistem Informasi Monitoring Peminjaman Ruang UPT TIK Universitas Sebelas Maret Surakarta.
+        Sistem Informasi ini dimaksudkan untuk memudahkan pelaksanaan peminjaman ruang dan memonitoring ruang di
+        UPT TIK Universitas Sebelas Maret Surakarta.
+      </p>
+    </div>
+    <br><br>
+    <h2 class="header" style="text-align: center;">Alur Peminjaman Ruang UPT TIK</h2>
       <div class="row">
-        <div class="col s12 m4">
+        <div class="col-md-4" style="text-align:center;">
           <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="mdi-image-flash-on"></i></h2>
-            <h5 class="center">Alur 1</h5>
+            <h2><i class="fa fa-chevron-circle-right" style="color:#1E90FF;"></i></h2>
+            <h5 style="font-size: 20px;"><b>Pertama</b></h5>
 
-            <p class="light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p style="font-size:15px;">Buka alamat website peminjaman ruang di UPT TIK UNS.</p>
           </div>
         </div>
 
-        <div class="col s12 m4">
+        <div class="col-md-4" style="text-align:center;">
           <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="mdi-social-group"></i></h2>
-            <h5 class="center">Alur 2</h5>
+            <h2><i class="fa fa-chevron-circle-right" style="color:#1E90FF;"></i></h2>
+            <h5 style="font-size: 20px;"><b>Kedua</b></h5>
 
-            <p class="light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p style="font-size:15px;">Login atau Masuk ke akun anda, Jika belum memiliki silakan daftar disini.</p>
           </div>
         </div>
 
-        <div class="col s12 m4">
+        <div class="col-md-4" style="text-align:center;">
           <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="mdi-action-settings"></i></h2>
-            <h5 class="center">Alur 3</h5>
+            <h2><i class="fa fa-chevron-circle-right" style="color:#1E90FF;"></i></h2>
+            <h5 style="font-size: 20px;"><b>Ketiga</b></h5>
 
-            <p class="light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p style="font-size:15px;">Lakukan pemesanan ruang yang akan digunakan secara online.</p>
           </div>
         </div>
 
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="mdi-image-flash-on"></i></h2>
-            <h5 class="center">Alur 4</h5>
 
-            <p class="light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="mdi-social-group"></i></h2>
-            <h5 class="center">Alur 5</h5>
-
-            <p class="light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="mdi-action-settings"></i></h2>
-            <h5 class="center">Alur 6</h5>
-
-            <p class="light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          </div>
-        </div>
       </div>
 
-    </div>
+      <div class="row">
+        <div class="col-md-4" style="text-align:center;">
+          <div class="icon-block">
+            <h2><i class="fa fa-chevron-circle-right" style="color:#1E90FF;"></i></h2>
+            <h5 style="font-size: 20px;"><b>Keempat</b></h5>
+
+            <p style="font-size:15px;">Download contoh berkas peminjaman ruang.</p>
+          </div>
+        </div>
+
+        <div class="col-md-4" style="text-align:center;">
+          <div class="icon-block">
+            <h2><i class="fa fa-chevron-circle-right" style="color:#1E90FF;"></i></h2>
+            <h5 style="font-size: 20px;"><b>Kelima</b></h5>
+
+            <p style="font-size:15px;">Pengumpulan berkas peminjaman ke pengelola.</p>
+          </div>
+        </div>
+
+        <div class="col-md-4" style="text-align:center;">
+          <div class="icon-block">
+            <h2><i class="fa fa-chevron-circle-right" style="color:#1E90FF;"></i></h2>
+            <h5 style="font-size: 20px;"><b>Keenam</b></h5>
+
+            <p style="font-size:15px;">Menunggu acc dari pengelola.</p>
+          </div>
+        </div>
+
+      </div>
     <br><br>
 
     <div class="section">
